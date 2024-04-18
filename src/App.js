@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import Header from './components/header/header';
-import { Route,Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import ServiceList from './components/ServiceList/ServiceList';
 import Form from './components/Form/Form';
 
@@ -20,7 +20,7 @@ function App() {
       <Header/>
       <Routes>
         <Route index element = {<ServiceList />}/>
-        <Route path = {'/form'} element = {<Form />}/>
+        <Route path = {'Form'} element = {<Form />}/>
       </Routes>
     </div>
   );

@@ -40,11 +40,11 @@ const Form = () => {
   };
 
   return (
-    <div className="form">
+    <div className={'form'}>
       <h3>Введите ваши данные</h3>
 
       <input
-        className="input"
+        className={'input'}
         type="text"
         placeholder={"ФИО"}
         value={fio}
@@ -52,7 +52,7 @@ const Form = () => {
       />
 
       <input
-        className="input"
+        className={'input'}
         type="text"
         placeholder={"Компания"}
         value={company}
@@ -60,14 +60,14 @@ const Form = () => {
       />
 
       <input
-        className="input"
+        className={'input'}
         type="text"
         placeholder={"Страна"}
         value={country}
         onChange={onChangeCountry}
       />
 
-      <select value={subject} onChange={onChangeSubject} className={"select"}>
+      <select value={subject} onChange={onChangeSubject} className={'select'}>
         <option value={"phisical"}>Физическое лицо</option>
         <option value={"legal"}>Юридическое лицо</option>
       </select>
