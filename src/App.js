@@ -17,10 +17,10 @@ function App() {
 
   return (
     <div className="App">
-      <Header/>
+      <Header />
       <Routes>
         <Route index element = {<ServiceList />}/>
-        <Route path = {'Form'} element = {<Form />}/>
+        <Route path = {'form'} element = {<Form />}/>
       </Routes>
     </div>
   );
