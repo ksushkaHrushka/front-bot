@@ -1,0 +1,31 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #CFDAEC;
+    border-radius: 5px;
+}
+
+.input:focus {
+    outline: none;
+    border: 2px solid #3E5F8A
+}
+
+.select {
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #CFDAEC;
+    border-radius: 5px;
+}
+
+.select:focus {
+    outline: none;
+    border: 2px solid #3E5F8A
+}
