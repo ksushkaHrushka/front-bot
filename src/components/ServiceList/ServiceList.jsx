@@ -21,7 +21,7 @@ const getTotalPrice = (items = []) => {
 const ServiceList = () => {
 
     const [addedItems, setAddedItems] = useState([]);
-    const {tg} = useTelegram;
+    const {tg} = useTelegram();
 
     const onAdd = (service) => {
         const alreadyAdded = addedItems.find(item => item.id === service.id);
