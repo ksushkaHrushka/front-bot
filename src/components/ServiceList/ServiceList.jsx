@@ -31,7 +31,7 @@ const ServiceList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        fetch('http://localhost:8000', {
+        fetch('https://bot-al5zur09.b4a.run:8000', {
             method: POST,
             headers: {
                 'Content-Type': 'application/json', 
