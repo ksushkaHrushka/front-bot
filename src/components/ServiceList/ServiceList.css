@@ -1,6 +1,8 @@
 .list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    align-items: center;
+    text-align: center;
     justify-content: center;
 }
 

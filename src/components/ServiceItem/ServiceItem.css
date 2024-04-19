@@ -12,10 +12,16 @@
     height: 100px;
     margin: 0 auto;
     background: var(--tg-theme-button-color);
+    margin-bottom: 10px;
+}
+
+.title {
+    margin-bottom: 10px;
 }
 
 .description {
     font-size: 0.8em;
+    margin-bottom: 10px;
 }
 
 .add-btn {
