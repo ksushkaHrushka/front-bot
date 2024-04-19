@@ -31,7 +31,7 @@ const ServiceList = () => {
             queryId
         }
         tg.sendData(JSON.stringify(data));
-    }, [services, totalPrice, queryId])
+    }, [services, getTotalPrice])
     
       useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
