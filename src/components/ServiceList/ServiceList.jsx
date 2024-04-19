@@ -3,7 +3,7 @@ import './ServiceList.css'
 import ServiceItem from "../ServiceItem/ServiceItem";
 import { useTelegram } from "../../hooks/useTelegram";
 
-const service = [
+const services = [
     {id:'1', title:'ИТ-консалтинг', price: 700, description: 'Мы оценим текущее состояние вашей информационной системы и составим стратегию развития'},
     {id:'1', title:'Разработка ПО', price: 1000, description: 'SoftTeco предлагает полный цикл программных услуг клиентам из различных отраслей'},
     {id:'1', title:'Разработка мобильных приложений', price: 700, description: 'Предлагаем полный цикл разработки мобильных приложений для бизнеса, создавая решения в соответствии с индивидуальными нуждами клиента'},
@@ -30,7 +30,7 @@ const ServiceList = () => {
         if(alreadyAdded) {
             newItems = addedItems.filter(item => item.id !== service.id);
         } else {
-            newItems = [...addedItems,service];
+            newItems = [...addedItems, service];
         }
 
         setAddedItems(newItems)
@@ -48,7 +48,7 @@ const ServiceList = () => {
 
     return (
         <div className={'list'}>
-            {service.map(item => (
+            {services.map(item => (
                 <ServiceItem
                     service={item}
                     onAdd={onAdd}
