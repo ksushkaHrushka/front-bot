@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './ServiceList.css'
 import ServiceItem from "../ServiceItem/ServiceItem";
 import { useTelegram } from "../../hooks/useTelegram";
+import { useCallback, useEffect } from "react";
 
 const services = [
     {id: 1, title:'ИТ-консалтинг', price: 700, description: 'Мы оценим текущее состояние вашей информационной системы и составим стратегию развития'},
@@ -22,6 +23,23 @@ const ServiceList = () => {
 
     const [addedItems, setAddedItems] = useState([]);
     const {tg} = useTelegram();
+
+    const onSendData = useCallback(() => {
+        const data = {
+            services: addedItems,
+            totalPrice: getTotalPrice(addedItems),
+            queryId
+        }
+        tg.sendData(JSON.stringify(data));
+    }, [services, totalPrice, queryId])
+    
+      useEffect(() => {
+        tg.onEvent('mainButtonClicked', onSendData)
+        return () => {
+          tg.offEvent('mainButtonClicked', onSendData)
+        }
+      }, [onSendData])
+    
 
     const onAdd = (service) => {
         const alreadyAdded = addedItems.find(item => item.id === service.id);
