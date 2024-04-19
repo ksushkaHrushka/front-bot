@@ -19,19 +19,26 @@ const getTotalPrice = (items = []) => {
     }, 0)
 } 
 
+
 const ServiceList = () => {
 
     const [addedItems, setAddedItems] = useState([]);
-    const {tg} = useTelegram();
+    const {tg, queryId} = useTelegram();
 
     const onSendData = useCallback(() => {
         const data = {
             services: addedItems,
             totalPrice: getTotalPrice(addedItems),
-            queryId
+            queryId,
         }
-        tg.sendData(JSON.stringify(data));
-    }, [services, getTotalPrice])
+        fetch('http://localhost:8000', {
+            method: POST,
+            headers: {
+                'Content-Type': 'application/json', 
+            },
+            body: JSON.stringify(data),
+        })
+      }, [])
     
       useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData)
@@ -39,7 +46,6 @@ const ServiceList = () => {
           tg.offEvent('mainButtonClicked', onSendData)
         }
       }, [onSendData])
-    
 
     const onAdd = (service) => {
         const alreadyAdded = addedItems.find(item => item.id === service.id);
