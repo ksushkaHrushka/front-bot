@@ -40,7 +40,7 @@ const ServiceList = () => {
         } else {
             tg.MainButton.show();
             tg.MainButton.setParams({
-                text: 'Заказать на приблизительную стоимость ${getTotalPrice(newItems)}'
+                text: `Заказать на приблизительную стоимость ${getTotalPrice(newItems)}`
             })
         }
 
