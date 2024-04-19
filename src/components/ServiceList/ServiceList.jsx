@@ -12,7 +12,7 @@ const services = [
     {id:'1', title:'UI/UX дизайн', price: 900, description: 'Благодаря первоклассным услугам UI/UX-дизайна SoftTeco вы без труда воплотите свою идею в жизнь с нуля'},
 ]
 
-const getTotalPrice = (items) => {
+const getTotalPrice = (items = []) => {
     return items.reduce ((acc, item) => {
         return acc += item.price
     }, 0)

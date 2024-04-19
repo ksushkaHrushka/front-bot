@@ -10,7 +10,7 @@ const ServiceItem = ({service, className, onAdd}) => {
 
     return (
         <div className={'service' + className}>
-            <div className={'img'} />
+            <div className={'img'}/>
             <div className={'title'}>{service.title}</div>
             <div className={'description'}>{service.description}</div>
             <div className={'price'}>
