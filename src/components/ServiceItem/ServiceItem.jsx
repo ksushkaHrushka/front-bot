@@ -11,7 +11,7 @@ const ServiceItem = ({service, className, onAdd}) => {
     return (
         <div className={'service' + className}>
             <div className={'img'}> 
-                <img src="/src/img/card-1.svg" alt="image not found" />
+                <img src={service.image} alt="image not found" />
             </div>
             <div className={'title'}>{service.title}</div>
             <div className={'description'}>{service.description}</div>
