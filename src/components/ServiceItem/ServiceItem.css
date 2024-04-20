@@ -8,13 +8,9 @@
 
 .img {
     width: 100%;
-    background: lightgray;
-    height: 100px;
     margin: 0 auto;
-    background: var(--tg-theme-button-color);
     margin-bottom: 10px;
     margin-top: 10px;
-    border-radius: 5px;
 }
 
 .title {
