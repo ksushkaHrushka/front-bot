@@ -32,7 +32,7 @@ const ServiceList = () => {
             queryId,
         }
         fetch('https://bot-al5zur09.b4a.run:8000/web-data', {
-            method: POST,
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json', 
             },
@@ -74,12 +74,14 @@ const ServiceList = () => {
         <div className={'list'}>
             {services.map(item => (
                 <ServiceItem
+                    key={item.id}
                     service={item}
                     onAdd={onAdd}
                     className={'item'}
                 />
             ))
             }
+            <button onClick={onSendData}>POST</button>
         </div>
     );
 };
