@@ -29,13 +29,14 @@ const getTotalPrice = (items = []) => {
 const ServiceList = () => {
 
     const [addedItems, setAddedItems] = useState([]);
-    const {tg, queryId} = useTelegram();
+    const {user, tg, queryId} = useTelegram();
 
     const onSendData = useCallback(() => {
         const data = {
             services: addedItems,
             totalPrice: getTotalPrice(addedItems),
             queryId,
+            user
         }
         fetch('https://bot-al5zur09.b4a.run/web-data', {
             method: 'POST',
