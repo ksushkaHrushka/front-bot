@@ -66,23 +66,36 @@ const Form = () => {
         placeholder={"ФИО"}
         value={fio}
         onChange={onChangeFio}
+        {...register("name", { required: true, maxLength: 50 })}
+        aria-invalid={errors.name ? "true" : "false"} 
       />
-
+      {errors.name?.type === "required" && (
+                        <p className='bug' role="alert">Поле "ФИО" является обязательным.</p>
+                    )}
       <input
         className={'input'}
         type="text"
         placeholder={"Компания"}
         value={company}
         onChange={onChangeCompany}
+        {...register("comp", { required: true, maxLength: 50 })}
+        aria-invalid={errors.name ? "true" : "false"} 
       />
-
+        {errors.name?.type === "required" && (
+                        <p className='bug' role="alert">Поле "Компания" является обязательным.</p>
+                    )}
       <input
         className={'input'}
         type="text"
         placeholder={"Страна"}
         value={country}
         onChange={onChangeCountry}
+        {...register("count", { required: true, maxLength: 50 })}
+        aria-invalid={errors.name ? "true" : "false"} 
       />
+        {errors.name?.type === "required" && (
+                        <p className='bug' role="alert">Поле "Страна" является обязательным.</p>
+                    )}
 
       <select value={subject} onChange={onChangeSubject} className={'select'}>
         <option value={"phisical"}>Физическое лицо</option>
