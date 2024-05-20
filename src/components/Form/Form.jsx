@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import "./Form.css";
 import { useTelegram } from "../../hooks/useTelegram";
 import { useForm } from "react-hook-form";
@@ -18,11 +18,11 @@ const Form = () => {
     }
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = useCallback((data) => {
     if (isValid) {
       tg.sendData(JSON.stringify(data));
     }
-  }
+  }, [isValid]);
 
   useEffect(() => {
     tg.MainButton.setParams({
@@ -30,16 +30,15 @@ const Form = () => {
     });
     tg.MainButton.isVisible = isDirty;
 
-    tg.onEvent('mainButtonClicked', onSendData)
+    tg.onEvent('mainButtonClicked', handleSubmit(onSubmit))
     return () => {
-      tg.offEvent('mainButtonClicked', onSendData)
+      tg.offEvent('mainButtonClicked', handleSubmit(onSubmit))
     }
-  }, [onSendData])
+  }, [handleSubmit, onSubmit, isDirty])
 
   return (
     <form 
       className={'form'}
-      onSubmit={handleSubmit(onSubmit)}
     >
       <h3>Введите ваши данные</h3>
 
