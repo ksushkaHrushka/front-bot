@@ -1,94 +1,112 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Form.css";
 import { useTelegram } from "../../hooks/useTelegram";
+import { useForm } from "react-hook-form";
 
 const Form = () => {
-  const [fio, setFio] = useState('');
-  const [company, setCompany] = useState('');
-  const [country, setCountry] = useState('');
-  const [subject, setSubject] = useState('phisical');
   const { tg } = useTelegram();
-
-  const onSendData = useCallback(() => {
-    const data = {
-        fio,
-        company,
-        country,
-        subject
+  const { 
+    register,
+    handleSubmit,
+    formState: { isValid, isDirty, errors }
+  } = useForm({
+    defaultValues: {
+      name: '',
+      company: '',
+      country: '',
+      subject: 'phisical'
     }
-    tg.sendData(JSON.stringify(data));
-  }, [fio, company, country, subject])
+  });
+
+  const onSubmit = (data) => {
+    if (isValid) {
+      tg.sendData(JSON.stringify(data));
+    }
+  }
 
   useEffect(() => {
+    tg.MainButton.setParams({
+      text: "Отправить данные",
+    });
+    tg.MainButton.isVisible = isDirty;
+
     tg.onEvent('mainButtonClicked', onSendData)
     return () => {
       tg.offEvent('mainButtonClicked', onSendData)
     }
   }, [onSendData])
 
-  useEffect(() => {
-    tg.MainButton.setParams({
-      text: "Отправить данные",
-    });
-  }, []);
-
-  useEffect(() => {
-    if (!fio || !country) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-    }
-  }, [fio, country]);
-
-  const onChangeFio = (e) => {
-    setFio(e.target.value);
-  };
-
-  const onChangeCompany = (e) => {
-    setCompany(e.target.value);
-  };
-
-  const onChangeCountry = (e) => {
-    setCountry(e.target.value);
-  };
-
-  const onChangeSubject = (e) => {
-    setSubject(e.target.value);
-  };
-
   return (
-    <div className={'form'}>
+    <form 
+      className={'form'}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <h3>Введите ваши данные</h3>
 
       <input
         className={'input'}
         type="text"
         placeholder={"ФИО"}
-        value={fio}
-        onChange={onChangeFio}
+        {...register("name", { 
+          required: 'Поле является обязательным',
+          minLength: {
+            value: 13,
+            message: 'Минимальная длина 13'
+          },
+          maxLength: {
+            value: 283,
+            message: 'Максимальная длина 283'
+          }
+        })}
       />
+      {errors.name && <span>{errors.name.message}</span>}
 
       <input
         className={'input'}
         type="text"
         placeholder={"Компания"}
-        value={company}
-        onChange={onChangeCompany}
+        {...register("company", { 
+          required: 'Поле является обязательным',
+          minLength: {
+            value: 2,
+            message: 'Минимальная длина 2'
+          },
+          maxLength: {
+            value: 100,
+            message: 'Максимальная длина 100'
+          }
+        })}
       />
+      {errors.company && <span>{errors.company.message}</span>}
 
       <input
         className={'input'}
         type="text"
         placeholder={"Страна"}
-        value={country}
-        onChange={onChangeCountry}
+        {...register("country", { 
+          required: 'Поле является обязательным',
+          minLength: {
+            value: 3,
+            message: 'Минимальная длина 3'
+          },
+          maxLength: {
+            value: 100,
+            message: 'Максимальная длина 100'
+          }
+        })}
       />
+      {errors.country && <span>{errors.country.message}</span>}
 
-      <select value={subject} onChange={onChangeSubject} className={'select'}>
+      <select
+        className={'select'}
+        {...register("subject", { 
+          required: 'Поле является обязательным'
+        })}
+      >
         <option value={"phisical"}>Физическое лицо</option>
         <option value={"legal"}>Юридическое лицо</option>
       </select>
-    </div>
+    </form>
   );
 };
 
