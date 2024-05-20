@@ -65,11 +65,6 @@ const Form = () => {
         type="text"
         placeholder={"Компания"}
         {...register("company", { 
-          required: 'Поле является обязательным',
-          minLength: {
-            value: 2,
-            message: 'Минимальное количество символов 2'
-          },
           maxLength: {
             value: 100,
             message: 'Максимальная длина 100'
@@ -83,6 +78,11 @@ const Form = () => {
         type="text"
         placeholder={"Страна"}
         {...register("country", {
+          required: 'Поле является обязательным',
+          minLength: {
+            value: 3,
+            message: 'Минимальное количество символов 3'
+          },
           maxLength: {
             value: 100,
             message: 'Максимальная длина 100'
