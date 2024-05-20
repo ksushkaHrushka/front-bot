@@ -89,7 +89,7 @@ const Form = () => {
           }
         })}
       />
-      {errors.country && <span className="erro">{errors.country.message}</span>}
+      {errors.country && <span className="error">{errors.country.message}</span>}
 
       <select
         className={'select'}
