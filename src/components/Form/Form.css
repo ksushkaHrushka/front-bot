@@ -31,6 +31,7 @@
 }
 
 .error {
+    padding-top: 5px;
     color: red;
     font-style: italic;
 }
