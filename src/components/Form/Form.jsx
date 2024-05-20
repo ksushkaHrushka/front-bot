@@ -11,7 +11,7 @@ const Form = () => {
     formState: { isValid, isDirty, errors }
   } = useForm({
     defaultValues: {
-      name: '',
+      fio: '',
       company: '',
       country: '',
       subject: 'phisical'
@@ -46,11 +46,11 @@ const Form = () => {
         className={'input'}
         type="text"
         placeholder={"ФИО"}
-        {...register("name", { 
+        {...register("fio", { 
           required: 'Поле является обязательным',
           minLength: {
             value: 13,
-            message: 'Минимальная длина 13'
+            message: 'Введите полностью ваше ФИО'
           },
           maxLength: {
             value: 283,
@@ -58,7 +58,7 @@ const Form = () => {
           }
         })}
       />
-      {errors.name && <span>{errors.name.message}</span>}
+      {errors.fio && <span className="error">{errors.fio.message}</span>}
 
       <input
         className={'input'}
@@ -68,7 +68,7 @@ const Form = () => {
           required: 'Поле является обязательным',
           minLength: {
             value: 2,
-            message: 'Минимальная длина 2'
+            message: 'Минимальное количество символов 2'
           },
           maxLength: {
             value: 100,
@@ -76,25 +76,20 @@ const Form = () => {
           }
         })}
       />
-      {errors.company && <span>{errors.company.message}</span>}
+      {errors.company && <span className="error">{errors.company.message}</span>}
 
       <input
         className={'input'}
         type="text"
         placeholder={"Страна"}
-        {...register("country", { 
-          required: 'Поле является обязательным',
-          minLength: {
-            value: 3,
-            message: 'Минимальная длина 3'
-          },
+        {...register("country", {
           maxLength: {
             value: 100,
             message: 'Максимальная длина 100'
           }
         })}
       />
-      {errors.country && <span>{errors.country.message}</span>}
+      {errors.country && <span className="erro">{errors.country.message}</span>}
 
       <select
         className={'select'}
